@@ -2,7 +2,7 @@
 
 import { Reducer, Store, createStore, applyMiddleware } from "redux";
 import * as createLogger from "redux-logger";
-import thunk from "redux-thunk";
+import * as thunk from "redux-thunk";
 
 import {rootReducer} from "./rootReducer";
 
@@ -16,7 +16,7 @@ const logger: Redux.Middleware = createLogger();
 
 // create a store that has redux-thunk middleware enabled
 const createStoreWithMiddleware: (reducer: Reducer) => Store =
-  applyMiddleware(logger)(createStore);
+  applyMiddleware(thunk, logger)(createStore);
 
 export function configureStore(): Store {
   const store: Store = createStoreWithMiddleware(rootReducer);

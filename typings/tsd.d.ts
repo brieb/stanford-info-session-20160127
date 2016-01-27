@@ -17,3 +17,5 @@
 /// <reference path="redux/redux.d.ts" />
 /// <reference path="whatwg-fetch/whatwg-fetch.d.ts" />
 /// <reference path="es6-promise/es6-promise.d.ts" />
+/// <reference path="../node_modules/immutable/dist/immutable.d.ts" />
+/// <reference path="../node_modules/tslint/lib/tslint.d.ts" />

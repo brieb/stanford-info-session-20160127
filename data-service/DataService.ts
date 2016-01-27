@@ -88,15 +88,15 @@ export class DataService {
   }
 
   public searchData(searchTerm: string, limit: number, offset: number): DataRecord[] {
+    searchTerm = searchTerm.toUpperCase();
     return this.data
       .filter((datum: DataRecord) => {
-        return datum.id.indexOf(searchTerm) !== -1 ||
-          datum.caseNumber.indexOf(searchTerm) !== -1 ||
-          datum.date.toString().indexOf(searchTerm) !== -1 ||
-          datum.primaryType.indexOf(searchTerm) !== -1 ||
-          datum.description.indexOf(searchTerm) !== -1 ||
-          datum.locationDescription.indexOf(searchTerm) !== -1 ||
-          datum.updatedOn.toString().indexOf(searchTerm) !== -1;
+        return (datum.caseNumber != null && datum.caseNumber.toUpperCase().indexOf(searchTerm) !== -1) ||
+          (datum.date != null && datum.date.toString().toUpperCase().indexOf(searchTerm) !== -1) ||
+          (datum.primaryType != null && datum.primaryType.toUpperCase().indexOf(searchTerm) !== -1) ||
+          (datum.description != null && datum.description.toUpperCase().indexOf(searchTerm) !== -1) ||
+          (datum.locationDescription != null && datum.locationDescription.toUpperCase().indexOf(searchTerm) !== -1) ||
+          (datum.updatedOn != null && datum.updatedOn.toString().toUpperCase().indexOf(searchTerm) !== -1);
       })
       .slice(offset, offset + limit);
   }

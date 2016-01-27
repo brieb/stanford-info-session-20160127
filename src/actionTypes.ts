@@ -1,1 +1,1 @@
-export const FOO: string = "FOO";
+export const SET_LOCATIONS: string = "SET_LOCATIONS";
