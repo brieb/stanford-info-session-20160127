@@ -23,33 +23,20 @@ export class App extends React.Component<AppProps, AppState> {
 
   state: AppState = {
     viewport: {
-      isDragging: false,
+      latitude: 41.86431081,
+      longitude: -87.65819874,
+      zoom: 8,
       startDragLngLat: null,
-      latitude: 40,
-      longitude: 40,
-      zoom: 10
+      isDragging: false,
     },
   };
 
-  componentDidMount() {
-    this.props.dispatch(actions.setLocations([
-      {
-        latitude: 50,
-        longitude: 50
-      },
-      {
-        latitude: 60,
-        longitude: 60
-      },
-    ]));
-  }
+  private onSearch = (searchText: string) => {
+    this.props.dispatch(actions.search(searchText));
+  };
 
   private onChangeViewport = (viewport: MapGLViewport) => {
     this.setState({ viewport });
-  };
-
-  private onSearch = (searchText: string) => {
-    this.props.dispatch(actions.doSearch(searchText));
   };
 
   public render(): JSX.Element {
@@ -59,13 +46,12 @@ export class App extends React.Component<AppProps, AppState> {
       />
 
       <Map
-        width={500}
-        height={500}
+        width={window.innerWidth}
+        height={window.innerHeight}
+        viewport={this.state.viewport}
         locations={this.props.state.locations}
         onChangeViewport={this.onChangeViewport}
-        viewport={this.state.viewport}
       />
     </div>;
   }
-
 }
