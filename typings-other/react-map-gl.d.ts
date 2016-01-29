@@ -1,3 +1,14 @@
+declare interface MapGLViewport {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  startDragLngLat: {
+    latitude: number;
+    longitude: number;
+  };
+  isDragging: boolean;
+}
+
 declare module "react-map-gl" {
   import {ComponentClass} from "react";
 

@@ -6,7 +6,8 @@
     "lint": "tslint -c tslint.json src/**/*.tsx src/**/*.ts",
     "build": "rimraf build && tsc -p .",
     "start-budo": "budo ./build/src/index.js --css src/index.css --live --watch-glob \"{build/**/*.js,src/**/*.css}\" --  | bistre",
-    "start": "tsc -p . -w & node server.js & npm run start-budo",
+    "tsc-watch": "tsc -p . -w",
+    "start": "(tsc -p . && node server.js) & npm run start-budo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

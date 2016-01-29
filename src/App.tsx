@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 import pureRender from "pure-render-decorator";
 
 import {RootState} from "./RootState";
-import {Map, Viewport} from "./Map";
+import {Map} from "./Map";
 import {Search} from "./Search";
 import * as actions from "./actions";
 
@@ -14,7 +14,7 @@ export interface AppProps extends React.Props<any> {
 }
 
 export interface AppState {
-  viewport: Viewport;
+  viewport: MapGLViewport;
 }
 
 @connect((state: RootState) => ({ state }))
@@ -23,20 +23,33 @@ export class App extends React.Component<AppProps, AppState> {
 
   state: AppState = {
     viewport: {
-      latitude: 37.78,
-      longitude: -122.45,
-      zoom: 11,
-      startDragLngLat: null,
       isDragging: false,
+      startDragLngLat: null,
+      latitude: 40,
+      longitude: 40,
+      zoom: 10
     },
   };
 
-  private onSearch = (searchText: string) => {
-    this.props.dispatch(actions.search(searchText));
+  componentDidMount() {
+    this.props.dispatch(actions.setLocations([
+      {
+        latitude: 50,
+        longitude: 50
+      },
+      {
+        latitude: 60,
+        longitude: 60
+      },
+    ]));
+  }
+
+  private onChangeViewport = (viewport: MapGLViewport) => {
+    this.setState({ viewport });
   };
 
-  private onChangeViewport = (viewport: Viewport) => {
-    this.setState({ viewport });
+  private onSearch = (searchText: string) => {
+    this.props.dispatch(actions.doSearch(searchText));
   };
 
   public render(): JSX.Element {
@@ -46,12 +59,13 @@ export class App extends React.Component<AppProps, AppState> {
       />
 
       <Map
-        width={window.innerWidth}
-        height={window.innerHeight}
-        viewport={this.state.viewport}
+        width={500}
+        height={500}
         locations={this.props.state.locations}
         onChangeViewport={this.onChangeViewport}
+        viewport={this.state.viewport}
       />
     </div>;
   }
+
 }

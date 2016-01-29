@@ -87,7 +87,7 @@ export class DataService {
     return this.data.slice(offset, offset + limit);
   }
 
-  public searchData(searchTerm: string, limit: number, offset: number): DataRecord[] {
+  public searchData(searchTerm: string): DataRecord[] {
     searchTerm = searchTerm.toUpperCase();
     return this.data
       .filter((datum: DataRecord) => {
@@ -97,7 +97,6 @@ export class DataService {
           (datum.description != null && datum.description.toUpperCase().indexOf(searchTerm) !== -1) ||
           (datum.locationDescription != null && datum.locationDescription.toUpperCase().indexOf(searchTerm) !== -1) ||
           (datum.updatedOn != null && datum.updatedOn.toString().toUpperCase().indexOf(searchTerm) !== -1);
-      })
-      .slice(offset, offset + limit);
+      });
   }
 }

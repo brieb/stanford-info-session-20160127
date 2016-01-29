@@ -21,9 +21,7 @@ app.get("/api/data/read", function(req, res) {
 
 app.get("/api/data/search", function(req, res) {
   var searchTerm = req.query.searchTerm || "";
-  var limit = req.query.limit ? parseInt(req.query.limit) : 1000;
-  var offset = req.query.offset ? parseInt(req.query.offset) : 0;
-  var data = dataService.searchData(searchTerm, limit, offset);
+  var data = dataService.searchData(searchTerm);
 
   res.setHeader("Content-Type", "application/json");
   res.write(JSON.stringify(data));

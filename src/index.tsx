@@ -19,4 +19,3 @@ ReactDOM.render(
     <App/>
   </Provider>,
   reactContainer);
-

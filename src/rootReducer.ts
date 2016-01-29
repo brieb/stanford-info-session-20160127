@@ -1,18 +1,23 @@
 import * as _ from "lodash";
 
-import * as ActionTypes from "./actionTypes";
 import {Action} from "./Action";
 import {RootState} from "./RootState";
+import {SET_LOCATIONS} from "./actionTypes";
 import {MapLocation} from "./MapLocation";
 
 const initialState: RootState = {
-  locations: null,
+  locations: [
+    {
+      latitude: 40,
+      longitude: 40
+    }
+  ]
 };
 
 const actionHandlers: { [actionType: string]: (state: RootState, payload: any) => RootState } = {
 
-  [ActionTypes.SET_LOCATIONS]: (state: RootState, locations: MapLocation[]) => {
-    const newState: RootState = _.clone(state);
+  [SET_LOCATIONS]: (state: RootState, locations: MapLocation[]) => {
+    let newState: RootState = _.clone(state);
     newState.locations = locations;
     return newState;
   },

@@ -10,23 +10,12 @@ import {MapLocation} from "./MapLocation";
 const tileSource: string = "//tile.stamen.com/toner/{z}/{x}/{y}.png";
 const mapStyle: any = Immutable.fromJS(rasterTileStyle([tileSource]));
 
-export interface Viewport {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-  startDragLngLat: {
-    latitude: number;
-    longitude: number;
-  };
-  isDragging: boolean;
-}
-
 export interface MapProps extends React.Props<any> {
   width: number;
   height: number;
-  viewport: Viewport;
+  viewport: MapGLViewport;
   locations: MapLocation[];
-  onChangeViewport: (viewport: Viewport) => void;
+  onChangeViewport: (viewport: MapGLViewport) => void;
 }
 
 export interface MapComponentState { }
