@@ -7,7 +7,7 @@
     "build": "rimraf build && tsc -p .",
     "start-budo": "budo ./build/src/index.js --css src/index.css --live --watch-glob \"{build/**/*.js,src/**/*.css}\" --  | bistre",
     "tsc-watch": "tsc -p . -w",
-    "start": "npm run tsc-watch & (tsc -p . && node server.js) & npm run start-budo",
+    "start": "npm run tsc-watch & (tsc -p . && node data-server.js) & npm run start-budo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
